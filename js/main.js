@@ -1,12 +1,41 @@
+
 new fullpage('#fullpage', {
-    
+	
 	autoScrolling:true,
 	scrollHorizontally: true,
     scrollBar:true,
+    sectionsColor: ['#fff', '#EBE7E4', '#FFC19E', '#BCE55C','#5CD1E5'],
     navigation: true,
 	navigationPosition: 'right',
-	navigationTooltips: ['GAH소개', '제다큐어','연구개발', '고객지원', '판매병원 찾기'],
-	easing: 'easeInOutCubic',
+    navigationTooltips: ['GAH소개','제다큐어','연구개발','본사위치','연구소위치'], 
+    easing: 'easeInOutCubic',
+    anchors: ['1st', 'second', '3rd', '4th', '5th'],
     menu: '.gnb_list',
-    anchors:['s1', 's2', 's3', 's4', 's5'],
+    normalScrollElements: '#s2',
 });
+
+var myScroll = new IScroll('.total_menu', {
+    mouseWheel: true,
+    // scrollbars: true
+});
+
+// 메뉴 버튼 클릭
+$('.totalMitem').click(function(){
+    if( $(this).hasClass('active')){    //현재 active가 적용된 상태일 떄
+        $(this).removeClass('active');
+    }else {
+        $('.totalMitem').removeClass('active');
+        $(this).addClass('active');
+    }
+})
+
+//햄버거 버튼 클릭
+$('.btn_total').click(function(){
+    $('.total_menu_z').addClass('active')
+});
+
+
+//메뉴 팝업 닫기버튼
+$('.btn_totalClose').click(function(){
+    $('.total_menu_z').removeClass('active')
+})

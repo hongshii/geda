@@ -4,14 +4,15 @@ new fullpage('#fullpage', {
 	autoScrolling:true,
 	scrollHorizontally: true,
     scrollBar:true,
-    sectionsColor: ['#fff', '#EBE7E4', '#FFC19E', '#BCE55C','#5CD1E5'],
+    // sectionsColor: ['#fff', '#EBE7E4', '#FFC19E', '#BCE55C','#5CD1E5'],
     navigation: true,
 	navigationPosition: 'right',
     navigationTooltips: ['GAH소개','제다큐어','연구개발','본사위치','연구소위치'], 
     easing: 'easeInOutCubic',
     anchors: ['1st', 'second', '3rd', '4th', '5th'],
     menu: '.gnb_list',
-    normalScrollElements: '#s2',
+    normalScrollElements: '#s2',    //오토스크롤이 아니라 정상 스크롤 작동
+    responsiveHeight: 450,    //세로 높이가 특정수치보다 작아졌을 때는 오토스크롤링 작동 안함
 });
 
 var myScroll = new IScroll('.total_menu', {
@@ -39,3 +40,15 @@ $('.btn_total').click(function(){
 $('.btn_totalClose').click(function(){
     $('.total_menu_z').removeClass('active')
 })
+
+//오른쪽 아래 고정되어 있는 섹션 위아래 이동버튼
+document.querySelector('.prevA').addEventListener('click',function(e){
+    e.preventDefault();
+    fullpage_api.moveSectionUp();
+});
+
+document.querySelector('.nextA').addEventListener('click',function(e){
+    e.preventDefault();
+    fullpage_api.moveSectionDown();
+});
+
